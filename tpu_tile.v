@@ -29,7 +29,7 @@ module tpu_tile (
         end
     end
 
-    // Explicitly slicing input vector to avoid Icarus indexing bugs
+    
     wire signed [7:0] v0 = vector_in[7:0];
     wire signed [7:0] v1 = vector_in[15:8];
     wire signed [7:0] v2 = vector_in[23:16];
@@ -39,9 +39,9 @@ module tpu_tile (
     wire signed [7:0] v6 = vector_in[55:48];
     wire signed [7:0] v7 = vector_in[63:56];
 
-    // Data Path: 8 parallel computing rows (Engines)
+    
 
-    // --- ROW 0 ---
+    // row 0
     wire signed [15:0] p0_0, p0_1, p0_2, p0_3, p0_4, p0_5, p0_6, p0_7;
     mac_unit mu0_0(clk, rst, matrix_in[7:0],     v0, p0_0);
     mac_unit mu0_1(clk, rst, matrix_in[15:8],    v1, p0_1);
@@ -66,7 +66,7 @@ module tpu_tile (
         else vector_out[23:0] <= (f0_sum[18] == 1'b1) ? 24'd0 : {{5{f0_sum[18]}}, f0_sum};
     end
 
-    // --- ROW 1 ---
+    //row1
     wire signed [15:0] p1_0, p1_1, p1_2, p1_3, p1_4, p1_5, p1_6, p1_7;
     mac_unit mu1_0(clk, rst, matrix_in[71:64],   v0, p1_0);
     mac_unit mu1_1(clk, rst, matrix_in[79:72],   v1, p1_1);
@@ -89,7 +89,7 @@ module tpu_tile (
         else vector_out[47:24] <= (f1_sum[18] == 1'b1) ? 24'd0 : {{5{f1_sum[18]}}, f1_sum};
     end
 
-    // --- ROW 2 ---
+    // row2
     wire signed [15:0] p2_0, p2_1, p2_2, p2_3, p2_4, p2_5, p2_6, p2_7;
     mac_unit mu2_0(clk, rst, matrix_in[135:128], v0, p2_0);
     mac_unit mu2_1(clk, rst, matrix_in[143:136], v1, p2_1);
@@ -112,7 +112,7 @@ module tpu_tile (
         else vector_out[71:48] <= (f2_sum[18] == 1'b1) ? 24'd0 : {{5{f2_sum[18]}}, f2_sum};
     end
 
-    // --- ROW 3 ---
+    // row3
     wire signed [15:0] p3_0, p3_1, p3_2, p3_3, p3_4, p3_5, p3_6, p3_7;
     mac_unit mu3_0(clk, rst, matrix_in[199:192], v0, p3_0);
     mac_unit mu3_1(clk, rst, matrix_in[207:200], v1, p3_1);
@@ -135,7 +135,7 @@ module tpu_tile (
         else vector_out[95:72] <= (f3_sum[18] == 1'b1) ? 24'd0 : {{5{f3_sum[18]}}, f3_sum};
     end
 
-    // --- ROW 4 ---
+    // row4
     wire signed [15:0] p4_0, p4_1, p4_2, p4_3, p4_4, p4_5, p4_6, p4_7;
     mac_unit mu4_0(clk, rst, matrix_in[263:256], v0, p4_0);
     mac_unit mu4_1(clk, rst, matrix_in[271:264], v1, p4_1);
@@ -158,7 +158,7 @@ module tpu_tile (
         else vector_out[119:96] <= (f4_sum[18] == 1'b1) ? 24'd0 : {{5{f4_sum[18]}}, f4_sum};
     end
 
-    // --- ROW 5 ---
+    // row5
     wire signed [15:0] p5_0, p5_1, p5_2, p5_3, p5_4, p5_5, p5_6, p5_7;
     mac_unit mu5_0(clk, rst, matrix_in[327:320], v0, p5_0);
     mac_unit mu5_1(clk, rst, matrix_in[335:328], v1, p5_1);
@@ -181,7 +181,7 @@ module tpu_tile (
         else vector_out[143:120] <= (f5_sum[18] == 1'b1) ? 24'd0 : {{5{f5_sum[18]}}, f5_sum};
     end
 
-    // --- ROW 6 ---
+    // row6
     wire signed [15:0] p6_0, p6_1, p6_2, p6_3, p6_4, p6_5, p6_6, p6_7;
     mac_unit mu6_0(clk, rst, matrix_in[391:384], v0, p6_0);
     mac_unit mu6_1(clk, rst, matrix_in[399:392], v1, p6_1);
@@ -204,7 +204,7 @@ module tpu_tile (
         else vector_out[167:144] <= (f6_sum[18] == 1'b1) ? 24'd0 : {{5{f6_sum[18]}}, f6_sum};
     end
 
-    // --- ROW 7 ---
+    // row7
     wire signed [15:0] p7_0, p7_1, p7_2, p7_3, p7_4, p7_5, p7_6, p7_7;
     mac_unit mu7_0(clk, rst, matrix_in[455:448], v0, p7_0);
     mac_unit mu7_1(clk, rst, matrix_in[463:456], v1, p7_1);
