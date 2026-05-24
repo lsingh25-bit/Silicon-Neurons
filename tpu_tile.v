@@ -4,13 +4,13 @@ module tpu_tile (
     input clk,
     input rst,
     input valid_in,
-    input signed [511:0] matrix_in,       // 8x8 flattened signed matrix
-    input signed [63:0]  vector_in,       // 8-element signed vector
+    input signed [511:0] matrix_in,       
+    input signed [63:0]  vector_in,       
     output reg valid_out,
-    output reg signed [191:0] vector_out  // 8 packed 24-bit outputs
+    output reg signed [191:0] vector_out  
 );
 
-    // Control Path: 3-cycle shift register to match execution latency
+    
     reg valid_p1;
     reg valid_p2;
     reg valid_p3;
