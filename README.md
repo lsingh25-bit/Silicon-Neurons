@@ -24,7 +24,7 @@ tpu_tile.v The top-level module containing 8 parallel computing rows. It instant
 
 https://edaplayground.com/x/D2zt
 
-##Simulation Wveform (for provided tb file)
+## Simulation Wveform (for provided tb file)
 
 
 <img width="1439" height="309" alt="image" src="https://github.com/user-attachments/assets/8583ab97-ea70-44ac-95bd-bce8f6d12aae" />
